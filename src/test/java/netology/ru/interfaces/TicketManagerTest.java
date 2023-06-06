@@ -2,6 +2,8 @@ package netology.ru.interfaces;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Comparator;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class TicketManagerTest {
@@ -76,7 +78,22 @@ class TicketManagerTest {
         assertArrayEquals(expected, actual);
     }
 
-
-
+    @Test
+    void SortAskTicketComparator() {
+        manager.add(ticket1);
+        manager.add(ticket2);
+        manager.add(ticket3);
+        manager.add(ticket4);
+        manager.add(ticket5);
+        manager.add(ticket6);
+        manager.add(ticket7);
+        manager.add(ticket8);
+        manager.add(ticket9);
+        manager.add(ticket10);
+        Comparator<Ticket> comparator = new TicketComparator();
+        Ticket [] actual = manager.findAll("MSK","JOK", comparator);
+        Ticket [] expected = {ticket5, ticket8, ticket10, ticket1, ticket3};
+        assertArrayEquals(expected, actual);
+    }
 
 }
